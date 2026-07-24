@@ -1,28 +1,28 @@
-// ===============================
-// KBO 카드게임 메인 스크립트
-// ===============================
+// =====================================
+// KBO 카드게임 MAIN SCRIPT
+// =====================================
 
 
-// 현재 선택 슬롯
-let currentSlot = 1;
+// 플레이어 데이터
 
+let user = {
 
-// 현재 저장 데이터
-let gameData = null;
+    team:null,
 
+    money:10000000000, // 100억
 
+    normalContract:5,
 
-// 저장 슬롯 선택
+    premiumContract:1,
 
-function selectSave(slot){
+    seasonStarted:false,
 
-    currentSlot = slot;
+    difficulty:1,
 
-    alert(
-        "저장 슬롯 " + slot + " 선택"
-    );
+    cards:[]
 
-}
+};
+
 
 
 
@@ -32,134 +32,119 @@ function selectSave(slot){
 function startGame(){
 
 
-    const team =
-    document.getElementById("teamSelect").value;
+    const select =
+        document.getElementById("teamSelect");
+
+
+    user.team = select.value;
 
 
 
-    if(team === ""){
+    document.getElementById("startScreen")
+    .style.display="none";
 
-        alert(
-            "응원 구단을 선택해주세요."
-        );
 
-        return;
-
-    }
+    document.getElementById("mainScreen")
+    .style.display="block";
 
 
 
-    // 새 게임 데이터 생성
-
-    gameData = {
-
-        slot:currentSlot,
-
-
-        team:team,
-
-
-        money:100,
-
-
-        normalContract:5,
-
-
-        premiumContract:1,
-
-
-        season:1,
-
-
-        clearStage:0,
-
-
-        players:[],
-
-
-        legends:[],
-
-
-        items:{
-
-
-            enhanceTicket:0,
-
-
-            protectTicket:0,
-
-
-            statTicket:0
-
-
-        }
-
-    };
+    document.getElementById("myTeam")
+    .innerHTML =
+    "⚾ 선택 구단 : "
+    + user.team;
 
 
 
     saveGame();
 
 
-
-    // 화면 변경
-
-    document
-    .getElementById("startScreen")
-    .classList
-    .add("hidden");
-
-
-
-    document
-    .getElementById("mainScreen")
-    .classList
-    .remove("hidden");
-
-
-
-    updateMain();
+    showMessage(
+        "게임 시작!<br>일반 계약서 5개와 고급 계약서 1개 지급"
+    );
 
 }
 
 
 
 
-// 메인 화면 정보 업데이트
+// 메시지 출력
 
-function updateMain(){
+function showMessage(text){
 
 
-    if(!gameData)
+    document.getElementById("content")
+    .innerHTML=text;
+
+}
+
+
+
+
+
+// 리그
+
+function openLeague(){
+
+
+    let html = `
+
+    <h2>⚾ 리그</h2>
+
+
+    <button onclick="startSeasonMenu()">
+    시즌 시작
+    </button>
+
+
+    <button onclick="leagueExit()">
+    나가기
+    </button>
+
+
+    `;
+
+
+    showMessage(html);
+
+
+}
+
+
+
+
+// 시즌 시작 선택
+
+function startSeasonMenu(){
+
+
+    if(user.seasonStarted){
+
+
+        showMessage(
+        "이미 시즌이 진행 중입니다."
+        );
+
         return;
 
-
-
-    document
-    .getElementById("teamName")
-    .textContent =
-    gameData.team;
+    }
 
 
 
-    document
-    .getElementById("money")
-    .textContent =
-    gameData.money;
+    let html = `
+
+    <h2>현재 가능한 난이도</h2>
 
 
-
-    document
-    .getElementById("normalContract")
-    .textContent =
-    gameData.normalContract;
+    <button onclick="startSeason(1)">
+    1단계
+    </button>
 
 
+    `;
 
-    document
-    .getElementById("premiumContract")
-    .textContent =
-    gameData.premiumContract;
+
+    showMessage(html);
 
 
 }
@@ -167,128 +152,207 @@ function updateMain(){
 
 
 
-// 저장
 
-function saveGame(){
+// 시즌 시작
+
+function startSeason(level){
 
 
-    localStorage.setItem(
+    user.seasonStarted=true;
 
-        "KBO_SAVE_"+currentSlot,
+    user.difficulty=level;
 
-        JSON.stringify(gameData)
 
+    saveGame();
+
+
+    showMessage(
+
+    "시즌 시작!<br>"
+    +"난이도 : "+level+"단계"
+
+    );
+
+
+}
+
+
+
+
+// 리그 나가기
+
+function leagueExit(){
+
+    showMessage(
+    "리그 메뉴를 나갔습니다."
     );
 
 }
 
 
 
-// 불러오기
-
-function loadGame(slot){
 
 
-    const data =
+// 뽑기
 
-    localStorage.getItem(
+function openGacha(){
 
-        "KBO_SAVE_"+slot
+    if(typeof gachaMenu==="function"){
 
-    );
+        gachaMenu();
 
+    }else{
 
+        showMessage(
+        "뽑기 시스템 준비중"
+        );
 
-    if(data){
+    }
 
-
-        gameData =
-        JSON.parse(data);
-
-
-        currentSlot = slot;
+}
 
 
 
-        document
-        .getElementById("startScreen")
-        .classList
-        .add("hidden");
+
+
+// 강화
+
+function openEnhance(){
+
+    if(typeof enhanceMenu==="function"){
+
+        enhanceMenu();
+
+    }else{
+
+        showMessage(
+        "강화 시스템 준비중"
+        );
+
+    }
+
+}
 
 
 
-        document
-        .getElementById("mainScreen")
-        .classList
-        .remove("hidden");
+
+
+// 상점
+
+function openShop(){
+
+    if(typeof shopMenu==="function"){
+
+        shopMenu();
+
+    }else{
+
+        showMessage(
+        "상점 준비중"
+        );
+
+    }
+
+}
 
 
 
-        updateMain();
 
 
+// 보관함
+
+function openInventory(){
+
+
+    let html=
+
+    "<h2>📦 보관함</h2>";
+
+
+
+    if(user.cards.length===0){
+
+        html+="보유 카드 없음";
 
     }
 
     else{
 
 
-        alert(
-            "저장 데이터가 없습니다."
-        );
+        user.cards.forEach(card=>{
+
+
+            html+=`
+
+            <div class="card">
+
+            ${card.name}<br>
+
+            ${card.grade}<br>
+
+            강화 ${card.enhance}강
+
+            </div>
+
+            `;
+
+
+        });
 
 
     }
 
-}
 
-
-
-
-// 슬롯 버튼 연결
-
-function loadSlot(slot){
-
-    loadGame(slot);
-
-}
-
-
-
-
-// 메인으로 돌아가기
-
-function backMain(){
-
-
-    document
-    .querySelectorAll(".screen")
-    .forEach(
-
-        s=>s.classList.add("hidden")
-
-    );
-
-
-
-    document
-    .getElementById("mainScreen")
-    .classList
-    .remove("hidden");
+    showMessage(html);
 
 
 }
 
 
 
-// 페이지 시작
+
+
+// 돈 표시
+
+function updateUI(){
+
+
+    document.getElementById("money")
+    .innerHTML =
+    Math.floor(user.money/100000000)
+    +"억";
+
+
+
+    document.getElementById("normalContract")
+    .innerHTML =
+    user.normalContract;
+
+
+
+    document.getElementById("premiumContract")
+    .innerHTML =
+    user.premiumContract;
+
+
+}
+
+
+
+
+
+// 저장 불러오기
 
 window.onload=function(){
 
 
-    console.log(
-        "KBO 카드게임 시작"
-    );
+    if(typeof loadGame==="function"){
+
+        loadGame();
+
+    }
 
 
-};
+    updateUI();
+
+}
