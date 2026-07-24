@@ -11,242 +11,133 @@
 
 <body>
 
-<div id="app">
-
-    <!-- 시작 화면 -->
-    <div id="startScreen" class="screen">
-
-        <h1>⚾ KBO 카드게임</h1>
-
-        <div class="box">
-
-            <h2>저장 슬롯 선택</h2>
-
-            <div class="slots">
-
-                <button onclick="selectSave(1)">슬롯 1</button>
-                <button onclick="selectSave(2)">슬롯 2</button>
-                <button onclick="selectSave(3)">슬롯 3</button>
-                <button onclick="selectSave(4)">슬롯 4</button>
-                <button onclick="selectSave(5)">슬롯 5</button>
-
-            </div>
-
-        </div>
+<header>
+    <h1>⚾ KBO 카드게임</h1>
+</header>
 
 
-        <div class="box">
+<!-- 시작 화면 -->
+<section id="startScreen">
 
-            <h2>응원 구단 선택</h2>
+    <h2>구단 선택</h2>
 
+    <select id="teamSelect">
 
-            <select id="teamSelect">
+        <option value="SSG">SSG 랜더스</option>
+        <option value="KIA">KIA 타이거즈</option>
+        <option value="KT">KT 위즈</option>
+        <option value="삼성">삼성 라이온즈</option>
+        <option value="두산">두산 베어스</option>
+        <option value="롯데">롯데 자이언츠</option>
+        <option value="LG">LG 트윈스</option>
+        <option value="한화">한화 이글스</option>
+        <option value="키움">키움 히어로즈</option>
+        <option value="NC">NC 다이노스</option>
 
-                <option value="">구단 선택</option>
-
-                <option value="SSG">SSG 랜더스</option>
-                <option value="LG">LG 트윈스</option>
-                <option value="KIA">KIA 타이거즈</option>
-                <option value="KT">KT 위즈</option>
-                <option value="삼성">삼성 라이온즈</option>
-                <option value="두산">두산 베어스</option>
-                <option value="롯데">롯데 자이언츠</option>
-                <option value="한화">한화 이글스</option>
-                <option value="키움">키움 히어로즈</option>
-                <option value="NC">NC 다이노스</option>
-
-            </select>
+    </select>
 
 
-            <button onclick="startGame()">
-                게임 시작
-            </button>
+    <button onclick="startGame()">
+        게임 시작
+    </button>
+
+</section>
 
 
-        </div>
+
+<!-- 메인 화면 -->
+
+<section id="mainScreen" style="display:none;">
 
 
+<div class="top">
+
+    <div>
+        💰 보유 자금:
+        <span id="money">
+            100억
+        </span>
     </div>
 
 
-
-
-    <!-- 메인 화면 -->
-
-    <div id="mainScreen" class="screen hidden">
-
-
-        <h1>⚾ KBO 카드게임</h1>
-
-
-        <div class="info">
-
-            <p>
-                구단 :
-                <span id="teamName">
-                    -
-                </span>
-            </p>
-
-
-            <p>
-                보유 자금 :
-                <span id="money">
-                    100
-                </span>
-                억
-            </p>
-
-
-            <p>
-                일반 계약서 :
-                <span id="normalContract">
-                    5
-                </span>
-                개
-            </p>
-
-
-            <p>
-                고급 계약서 :
-                <span id="premiumContract">
-                    1
-                </span>
-                개
-            </p>
-
-
-        </div>
-
-
-
-
-        <div class="menu">
-
-
-            <button>
-                🎴 선수단
-            </button>
-
-
-            <button>
-                🎰 뽑기
-            </button>
-
-
-            <button>
-                🔨 강화
-            </button>
-
-
-            <button>
-                🏆 리그
-            </button>
-
-
-            <button>
-                🤝 FA
-            </button>
-
-
-            <button>
-                🔄 트레이드
-            </button>
-
-
-            <button>
-                🏪 상점
-            </button>
-
-
-            <button>
-                🏅 업적
-            </button>
-
-
-            <button>
-                📊 기록
-            </button>
-
-
-            <button>
-                ⚙ 설정
-            </button>
-
-
-        </div>
-
-
-
+    <div>
+        📄 일반 계약서:
+        <span id="normalContract">
+            5
+        </span>
     </div>
 
 
-
-
-
-    <!-- 리그 화면 -->
-
-    <div id="leagueScreen" class="screen hidden">
-
-
-        <h2>🏆 리그</h2>
-
-
-        <button>
-            시즌 시작
-        </button>
-
-
-        <button onclick="backMain()">
-            나가기
-        </button>
-
-
+    <div>
+        ⭐ 고급 계약서:
+        <span id="premiumContract">
+            1
+        </span>
     </div>
 
+</div>
 
 
 
-
-    <!-- 시즌 난이도 화면 -->
-
-    <div id="difficultyScreen" class="screen hidden">
-
-
-        <h2>
-            난이도 선택
-        </h2>
+<h2 id="myTeam">
+    팀명
+</h2>
 
 
-        <div id="difficultyList">
 
-            <!-- season.js에서 생성 -->
-
-        </div>
+<div class="menu">
 
 
-        <button onclick="backMain()">
-            뒤로
-        </button>
+<button onclick="openLeague()">
+    ⚾ 리그
+</button>
 
 
-    </div>
+<button onclick="openGacha()">
+    🎴 뽑기
+</button>
 
+
+<button onclick="openEnhance()">
+    🔥 강화
+</button>
+
+
+<button onclick="openShop()">
+    🛒 상점
+</button>
+
+
+<button onclick="openInventory()">
+    📦 보관함
+</button>
 
 
 </div>
 
 
 
+<div id="content">
 
-<!-- 데이터 -->
+게임을 시작하세요
 
-<script src="data/players.js"></script>
+</div>
+
+
+
+</section>
+
+
+
+
+
+<!-- JS 연결 -->
+
 
 <script src="teams.js"></script>
 
+<script src="data/players.js"></script>
 
-<!-- 시스템 -->
 
 <script src="card.js"></script>
 
@@ -255,35 +146,15 @@
 <script src="enhance.js"></script>
 
 
-
 <script src="system/save.js"></script>
-
-<script src="system/shop.js"></script>
-
 <script src="system/legend.js"></script>
-
+<script src="system/shop.js"></script>
 <script src="system/mission.js"></script>
 
 
-
-<script src="system/fa.js"></script>
-
-<script src="system/trade.js"></script>
-
-
-
-
-<!-- 게임 -->
-
 <script src="game/ai.js"></script>
-
-<script src="game/lineup.js"></script>
-
-<script src="game/season.js"></script>
-
 <script src="game/game.js"></script>
-
-
+<script src="game/season.js"></script>
 
 
 <script src="script.js"></script>
