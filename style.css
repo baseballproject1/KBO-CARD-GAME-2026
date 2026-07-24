@@ -1,1 +1,377 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Arial", sans-serif;
+}
 
+
+body {
+
+    background:
+    linear-gradient(
+        180deg,
+        #0b1f3a,
+        #163d6b
+    );
+
+    color:white;
+
+    min-height:100vh;
+
+}
+
+
+/* 전체 */
+
+#app {
+
+    width:100%;
+    max-width:500px;
+
+    margin:auto;
+
+    padding:20px;
+
+}
+
+
+/* 화면 */
+
+.screen {
+
+    text-align:center;
+
+}
+
+
+.hidden {
+
+    display:none;
+
+}
+
+
+/* 제목 */
+
+h1 {
+
+    font-size:32px;
+
+    margin-bottom:25px;
+
+    text-shadow:
+    0 0 10px black;
+
+}
+
+
+h2 {
+
+    margin-bottom:15px;
+
+}
+
+
+
+/* 박스 */
+
+.box {
+
+    background:
+
+    rgba(255,255,255,0.1);
+
+    border-radius:15px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    box-shadow:
+
+    0 5px 15px rgba(0,0,0,0.4);
+
+}
+
+
+
+/* 저장 슬롯 */
+
+.slots {
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(5,1fr);
+
+    gap:8px;
+
+}
+
+
+
+button {
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #1e40af
+    );
+
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:12px 8px;
+
+    margin:5px;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+
+    box-shadow:
+
+    0 4px 8px rgba(0,0,0,0.3);
+
+}
+
+
+button:hover {
+
+    transform:scale(1.05);
+
+}
+
+
+
+/* 선택창 */
+
+select {
+
+
+    width:90%;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    margin-bottom:15px;
+
+    font-size:16px;
+
+
+}
+
+
+
+/* 정보창 */
+
+.info {
+
+
+    background:
+
+    rgba(0,0,0,0.35);
+
+    border-radius:15px;
+
+    padding:15px;
+
+    margin-bottom:20px;
+
+
+}
+
+
+.info p {
+
+    margin:8px;
+
+    font-size:18px;
+
+}
+
+
+
+/* 메뉴 */
+
+.menu {
+
+
+    display:grid;
+
+
+    grid-template-columns:
+
+    repeat(2,1fr);
+
+
+    gap:10px;
+
+
+}
+
+
+.menu button {
+
+    height:60px;
+
+    font-size:17px;
+
+}
+
+
+
+/* 카드 기본 디자인 */
+
+.player-card {
+
+
+    width:260px;
+
+    margin:20px auto;
+
+
+    padding:20px;
+
+
+    border-radius:20px;
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #ffffff,
+        #dddddd
+    );
+
+
+    color:black;
+
+
+    box-shadow:
+
+    0 10px 20px black;
+
+
+}
+
+
+
+/* 등급 색상 */
+
+.normal {
+
+    border:5px solid white;
+
+}
+
+
+.A {
+
+    border:5px solid #3182ce;
+
+}
+
+
+.S {
+
+    border:5px solid #22c55e;
+
+}
+
+
+.gold {
+
+    border:5px solid #facc15;
+
+}
+
+
+.signature {
+
+
+    border:5px solid #ef4444;
+
+}
+
+
+.legend {
+
+
+    border:5px solid #9333ea;
+
+}
+
+
+
+/* 스탯 */
+
+.stat {
+
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:5px;
+
+    border-bottom:
+
+    1px solid #aaa;
+
+
+}
+
+
+
+/* 경기 화면 준비 */
+
+.stadium {
+
+
+    background:
+
+    linear-gradient(
+        green,
+        #166534
+    );
+
+
+    height:250px;
+
+    border-radius:20px;
+
+}
+
+
+
+/* 모바일 */
+
+@media(max-width:400px){
+
+
+    h1 {
+
+        font-size:26px;
+
+    }
+
+
+    .menu button {
+
+        font-size:14px;
+
+    }
+
+}
