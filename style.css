@@ -263,115 +263,366 @@ select {
 
     0 10px 20px black;
 
+/* =================================
+   KBO 카드게임 STYLE
+================================= */
+
+
+*{
+    box-sizing:border-box;
+    font-family:"Noto Sans KR", sans-serif;
+}
+
+
+body{
+
+    margin:0;
+    background:#101820;
+    color:white;
+    text-align:center;
+
+}
+
+
+/* 헤더 */
+
+header{
+
+    background:#0b3d91;
+    padding:20px;
+
+    box-shadow:0 3px 10px black;
+
+}
+
+
+header h1{
+
+    margin:0;
+    font-size:30px;
 
 }
 
 
 
-/* 등급 색상 */
+/* 시작 화면 */
 
-.normal {
+#startScreen{
+
+    margin-top:80px;
+
+}
+
+
+select{
+
+    width:260px;
+    padding:15px;
+
+    font-size:18px;
+
+    border-radius:10px;
+
+}
+
+
+
+/* 버튼 */
+
+button{
+
+    margin:10px;
+
+    padding:15px 25px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#e63946;
+
+    color:white;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+}
+
+
+button:hover{
+
+    background:#ff5964;
+
+}
+
+
+
+/* 메인 화면 */
+
+
+#mainScreen{
+
+    padding:15px;
+
+}
+
+
+
+/* 상단 정보 */
+
+
+.top{
+
+    display:flex;
+
+    justify-content:space-around;
+
+    flex-wrap:wrap;
+
+    background:#16222d;
+
+    padding:15px;
+
+    border-radius:15px;
+
+}
+
+
+.top div{
+
+    margin:5px;
+
+    font-size:16px;
+
+}
+
+
+
+/* 팀명 */
+
+
+#myTeam{
+
+    margin:25px;
+
+    color:#ffd166;
+
+}
+
+
+
+/* 메뉴 */
+
+
+.menu{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:10px;
+
+}
+
+
+.menu button{
+
+    background:#457b9d;
+
+}
+
+
+.menu button:hover{
+
+    background:#5fa8d3;
+
+}
+
+
+
+/* 내용창 */
+
+
+#content{
+
+    margin-top:20px;
+
+    min-height:250px;
+
+    background:#1d3557;
+
+    border-radius:15px;
+
+    padding:20px;
+
+}
+
+
+
+/* 카드 */
+
+
+.card{
+
+    width:180px;
+
+    height:260px;
+
+    margin:15px auto;
+
+    border-radius:15px;
+
+    padding:15px;
+
+    background:white;
+
+    color:black;
+
+    box-shadow:0 5px 15px black;
+
+}
+
+
+
+/* 등급 */
+
+
+.card.normal{
 
     border:5px solid white;
 
 }
 
 
-.A {
+.card.A{
 
-    border:5px solid #3182ce;
-
-}
-
-
-.S {
-
-    border:5px solid #22c55e;
+    border:5px solid #2196f3;
 
 }
 
 
-.gold {
+.card.S{
 
-    border:5px solid #facc15;
-
-}
-
-
-.signature {
-
-
-    border:5px solid #ef4444;
+    border:5px solid #00c853;
 
 }
 
 
-.legend {
+.card.gold{
 
-
-    border:5px solid #9333ea;
+    border:5px solid gold;
 
 }
 
 
+.card.signature{
 
-/* 스탯 */
+    border:5px solid red;
 
-.stat {
+}
 
 
-    display:flex;
+.card.legend{
 
-    justify-content:space-between;
-
-    padding:5px;
-
-    border-bottom:
-
-    1px solid #aaa;
-
+    border:5px solid purple;
 
 }
 
 
 
-/* 경기 화면 준비 */
-
-.stadium {
+/* 선수 이름 */
 
 
-    background:
+.playerName{
 
-    linear-gradient(
-        green,
-        #166534
-    );
+    font-size:22px;
 
-
-    height:250px;
-
-    border-radius:20px;
+    font-weight:bold;
 
 }
 
 
 
-/* 모바일 */
-
-@media(max-width:400px){
+/* 능력치 */
 
 
-    h1 {
+.stat{
 
-        font-size:26px;
+    margin-top:8px;
+
+    font-size:14px;
+
+}
+
+
+
+/* 경기 화면 */
+
+
+.field{
+
+    background:#2a9d8f;
+
+    height:300px;
+
+    border-radius:50%;
+
+    margin:20px;
+
+    position:relative;
+
+}
+
+
+
+.pitch{
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:80px;
+
+    height:80px;
+
+    background:#fff;
+
+    border-radius:50%;
+
+}
+
+
+
+/* 반응형 */
+
+
+@media(max-width:600px){
+
+
+    header h1{
+
+        font-size:24px;
 
     }
 
 
-    .menu button {
+    .menu{
 
-        font-size:14px;
+        grid-template-columns:repeat(2,1fr);
 
     }
+
+
+    button{
+
+        width:90%;
+
+    }
+
 
 }
